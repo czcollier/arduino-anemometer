@@ -3,7 +3,6 @@
 #include <string.h>
 #include <WiFi.h>
 #include <ArduinoJson.h>
-
 #include "wifi.h"
 #include "ntp.h"
 #include "arduino_secrets.h"
@@ -74,19 +73,20 @@ void setupWifi() {
   }
   
   Serial.print("Attempting to connect to wifi network. SSID: ");
-  Serial.println(SECRET_WIFI_SSID);
+  Serial.println(SECRET_SSID);
   
   // Connect to WPA/WPA2 network:
-  if (strcmp(SECRET_WIFI_PASSWORD, "") == 0) {
-    status = WiFi.begin(SECRET_WIFI_SSID);
+  if (strcmp(SECRET_OPTIONAL_PASS, "") == 0) {
+    status = WiFi.begin(SECRET_SSID);
   } else {
-    status = WiFi.begin(SECRET_WIFI_SSID, SECRET_WIFI_PASSWORD);
+    status = WiFi.begin(SECRET_SSID, SECRET_OPTIONAL_PASS);
   }
 
   while (status != WL_CONNECTED) {
     Serial.print(".");
     delay(300);
   }
+
 
   // you're connected now, so print out the data:
   Serial.println("we are connected to the network");
