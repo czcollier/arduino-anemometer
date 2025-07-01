@@ -2,6 +2,7 @@
 
 #include <ArduinoIoTCloud.h>
 #include <Arduino_ConnectionHandler.h>
+#include "arduino_secrets.h"
 
 const char SSID[]     = SECRET_SSID;    // Network SSID (name)
 const char PASS[]     = SECRET_OPTIONAL_PASS;    // Network password (use for WPA, or use as key for WEP)
@@ -9,10 +10,8 @@ const char PASS[]     = SECRET_OPTIONAL_PASS;    // Network password (use for WP
 
 float wind_speed;
 
-void initProperties(){
-
+void initProperties() {
   ArduinoCloud.addProperty(wind_speed, READ, ON_CHANGE, NULL);
-
 }
 
 WiFiConnectionHandler ArduinoIoTPreferredConnection(SSID, PASS);
